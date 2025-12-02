@@ -31,3 +31,10 @@
 ### **Installation**
 1. Download the latest release from [Releases](../../releases)
 2. Download and run installer
+
+## **📄 Credits**
+
+**rhcp**
+**ZeroxDev**
+**Glidd4**
+**Rust505**
