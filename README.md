@@ -20,7 +20,7 @@
 ## 📋 **Supported Devices**
 | Device Range | Chip Series | iOS Versions |
 |-------------|------------|--------------|
-| iPhone XR - iPhone 16 Pro Max | A12 - A18 Pro | 18.7.2 - 26.1 |
+| iPhone XR - iPhone 16 Pro Max | A12 - A18 Pro | 18.7.2 and 26.1 |
 ## ⚡ **Quick Start**
 
 ### **Prerequisites**
