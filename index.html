@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R1nderpest - iCloud Bypass Tool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --blue: #0066ff;
+            --pink: #ff00cc;
+            --purple: #9933ff;
+            --neon-blue: #00ccff;
+            --neon-pink: #ff00ff;
+        }
+
+        body {
+            background: #0a0a1a;
+            color: #f0f0f0;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* Download Frame - Full Width */
+        .download-frame {
+            background: linear-gradient(135deg, #ff00cc, #0066ff);
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-radius: 0;
+        }
+
+        .frame-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 10, 26, 0.6);
+            z-index: 1;
+        }
+
+        .frame-content {
+            position: relative;
+            z-index: 2;
+            text-align: left;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 20px;
+        }
+
+        .logo {
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #ffffff, #00ccff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -2px;
+            margin-bottom: 15px;
+            text-shadow: none;
+        }
+
+        .frame-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .frame-description {
+            font-size: 1.4rem;
+            color: #eee;
+            line-height: 1.6;
+            margin-bottom: 45px;
+            max-width: 700px;
+        }
+
+        /* Buttons Container */
+        .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 45px;
+        }
+
+        /* Download Button */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 18px;
+            padding: 24px 65px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.4rem;
+            transition: all 0.3s;
+            background: linear-gradient(90deg, #0066ff, #9933ff);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            min-width: 320px;
+            justify-content: center;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #00ccff, #ff00ff);
+        }
+
+        .windows-note {
+            display: block;
+            margin-top: 20px;
+            color: #ddd;
+            font-size: 1.1rem;
+        }
+
+        /* Source Code Button */
+        .source-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 24px 55px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            min-width: 320px;
+            justify-content: center;
+        }
+
+        .source-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Community Section */
+        .community-section {
+            margin-top: 50px;
+            padding-top: 35px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            max-width: 700px;
+        }
+
+        .community-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 22px 50px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            background: #0088cc;
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .telegram-btn:hover {
+            transform: scale(1.05);
+            background: #00a2ff;
+        }
+
+        /* Devices Section */
+        .devices-section {
+            background: linear-gradient(135deg, rgba(255, 0, 204, 0.08), rgba(0, 102, 255, 0.08));
+            border-radius: 20px;
+            padding: 60px 50px;
+            margin: 50px auto;
+            max-width: 1200px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 35px;
+            background: linear-gradient(90deg, #0066ff, #9933ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            text-align: left;
+        }
+
+        .devices-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-top: 20px;
+        }
+
+        .devices-column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .device-list {
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 15px;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .device-range {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .device-subtitle {
+            color: #bbb;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .ios-versions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .ios-badge {
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.25), rgba(153, 51, 255, 0.25));
+            padding: 16px 32px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .footer-text {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .developer {
+            color: #bbb;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        /* Snowflake Animation */
+        .snowflake {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.9;
+            z-index: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .download-frame {
+                padding: 50px 20px;
+                min-height: 500px;
+            }
+            
+            .frame-content {
+                padding-left: 15px;
+                text-align: center;
+            }
+            
+            .logo {
+                font-size: 3.2rem;
+                text-align: center;
+            }
+            
+            .frame-title {
+                font-size: 2.2rem;
+                text-align: center;
+            }
+            
+            .frame-description {
+                font-size: 1.2rem;
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .buttons-container {
+                justify-content: center;
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .download-btn, .source-btn, .telegram-btn {
+                width: 100%;
+                min-width: auto;
+                padding: 22px;
+                justify-content: center;
+            }
+            
+            .community-section {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .devices-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .device-list {
+                padding: 25px;
+            }
+            
+            .section-title {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2.8rem;
+            }
+            
+            .frame-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .ios-versions {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Download Frame - Full Width -->
+        <section class="download-frame" id="snow-container">
+            <div class="frame-overlay"></div>
+            
+            <div class="frame-content">
+                <h1 class="logo">R1nderpest</h1>
+                <h2 class="frame-title">iCloud Bypass Tool</h2>
+                <p class="frame-description">
+                    Windows utility for bypassing iCloud activation lock on iPhone and iPad. 
+                    Simple one-click process. Works with latest iOS versions.
+                </p>
+                
+                <div class="buttons-container">
+                    <!-- Установщик -->
+                    <a href="https://drive.google.com/file/d/1YSOb2wpYqlYXky9qW630532GCYm5J0dP/view?usp=sharing" target="_blank" class="download-btn">
+                        <i class="fas fa-download"></i> Download Installer
+                    </a>
+                    
+                    <!-- Исходный код -->
+                    <a href="https://drive.google.com/file/d/1zgeGN_Utw1WzVuh2eYQvMh3prWdlnzNh/view?usp=sharing" target="_blank" class="source-btn">
+                        <i class="fas fa-code"></i> Source Code (Google Drive)
+                    </a>
+                </div>
+                
+                <div class="windows-note">Windows 10/11 only</div>
+                
+                <!-- Community Section -->
+                <div class="community-section">
+                    <div class="community-title">Join our community</div>
+                    <!-- Telegram Channel -->
+                    <a href="https://t.me/r1nderpest" target="_blank" class="telegram-btn">
+                        <i class="fab fa-telegram"></i> Telegram Channel
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Devices Section -->
+        <div class="container">
+            <section class="devices-section">
+                <h2 class="section-title">Supported Devices</h2>
+                
+                <div class="devices-container">
+                    <div class="devices-column">
+                        <div class="device-list">
+                            <div class="device-range">iPhone XR, XS, XS Max - iPhone 16 Pro Max</div>
+                            <p class="device-subtitle">All iPad models also supported</p>
+                        </div>
+                    </div>
+                    
+                    <div class="devices-column">
+                        <div class="device-list">
+                            <div class="device-range">iOS Versions</div>
+                            <div class="ios-versions">
+                                <div class="ios-badge">iOS 18.7.2</div>
+                                <div class="ios-badge">iOS 26.0.1</div>
+                                <div class="ios-badge">iOS 26.1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <div class="footer-text">
+                    <div>R1nderpest - iCloud Bypass Tool</div>
+                    <div class="developer">developed by zeroxdev</div>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        // Create snowflakes
+        const snowContainer = document.getElementById('snow-container');
+        const snowflakeCount = 70;
+        
+        for (let i = 0; i < snowflakeCount; i++) {
+            createSnowflake();
+        }
+        
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            
+            // Random size between 2px and 8px
+            const size = Math.random() * 6 + 2;
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+            
+            // Random starting position
+            snowflake.style.left = `${Math.random() * 100}%`;
+            snowflake.style.top = `-10px`;
+            
+            // Random opacity
+            snowflake.style.opacity = Math.random() * 0.7 + 0.4;
+            
+            // Random blur effect
+            snowflake.style.filter = `blur(${Math.random() * 1.5}px)`;
+            
+            // Random color (white with blue/pink tint)
+            const colors = [
+                'rgba(255, 255, 255, 0.95)',
+                'rgba(0, 204, 255, 0.8)',
+                'rgba(255, 0, 204, 0.8)',
+                'rgba(255, 255, 255, 0.9)'
+            ];
+            snowflake.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            snowContainer.appendChild(snowflake);
+            
+            // Animate snowflake
+            animateSnowflake(snowflake);
+        }
+        
+        function animateSnowflake(snowflake) {
+            const startX = parseFloat(snowflake.style.left);
+            const amplitude = Math.random() * 60 + 30;
+            const speed = Math.random() * 2.5 + 1.5;
+            const swingSpeed = Math.random() * 0.02 + 0.01;
+            
+            let positionY = -10;
+            let time = 0;
+            
+            function fall() {
+                time += 0.05;
+                positionY += speed;
+                
+                // Horizontal swing motion
+                const swing = Math.sin(time * swingSpeed) * amplitude;
+                snowflake.style.left = `${startX + swing}%`;
+                snowflake.style.top = `${positionY}px`;
+                
+                // Reset if fallen out of view
+                if (positionY > window.innerHeight) {
+                    positionY = -10;
+                    snowflake.style.left = `${Math.random() * 100}%`;
+                }
+                
+                requestAnimationFrame(fall);
+            }
+            
+            fall();
+        }
+        
+        // Button hover effects
+        const buttons = document.querySelectorAll('.download-btn, .source-btn, .telegram-btn');
+        
+        buttons.forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.transition = 'all 0.2s';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+        
+        // Add subtle floating effect to iOS badges
+        const badges = document.querySelectorAll('.ios-badge');
+        badges.forEach((badge, index) => {
+            badge.style.animation = `float ${3 + index * 0.5}s ease-in-out infinite alternate`;
+        });
+        
+        // Add floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                100% { transform: translateY(-8px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
