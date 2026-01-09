@@ -259,16 +259,16 @@
         .ios-versions {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 25px;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         .ios-badge {
             background: linear-gradient(135deg, rgba(0, 102, 255, 0.25), rgba(153, 51, 255, 0.25));
-            padding: 16px 32px;
+            padding: 14px 25px;
             border-radius: 10px;
             font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
@@ -441,6 +441,8 @@
                         <div class="device-list">
                             <div class="device-range">iOS Versions</div>
                             <div class="ios-versions">
+                                <div class="ios-badge">iOS 18.7</div>
+                                <div class="ios-badge">iOS 18.7.1</div>
                                 <div class="ios-badge">iOS 18.7.2</div>
                                 <div class="ios-badge">iOS 26.0.1</div>
                                 <div class="ios-badge">iOS 26.1</div>
@@ -550,7 +552,7 @@
         // Add subtle floating effect to iOS badges
         const badges = document.querySelectorAll('.ios-badge');
         badges.forEach((badge, index) => {
-            badge.style.animation = `float ${3 + index * 0.5}s ease-in-out infinite alternate`;
+            badge.style.animation = `float ${3 + index * 0.3}s ease-in-out infinite alternate`;
         });
         
         // Add floating animation
